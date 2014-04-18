@@ -35,20 +35,28 @@ class F1ServiceProvider extends ServiceProvider {
             // Get access tokens from F1
             $authenticate = new Authenticate($settings);
 
-            // Create the HTTP Client
-            $client = new \Guzzle\Http\Client($app['config']['avr/f1::config.baseUrl']);
+            switch($authType) {
+                case 'v2v':
 
-            // Authenticate with F1
-            $oauth  = new \Guzzle\Plugin\Oauth\OauthPlugin(array(
-                'consumer_key'    => $app['config']['avr/f1::config.key'],
-                'consumer_secret' => $app['config']['avr/f1::config.secret'],
-                'token'           => $authenticate->accessToken['oauth_token'],
-                'token_secret'    => $authenticate->accessToken['oauth_token_secret'],
-            ));
+                break;
+                default:
+                    
 
-            // Return authenticated HTTP client
-            return $client->addSubscriber($oauth);
+                    // Create the HTTP Client
+                    $client = new \Guzzle\Http\Client($app['config']['avr/f1::config.baseUrl']);
 
+                    // Authenticate with F1
+                    $oauth  = new \Guzzle\Plugin\Oauth\OauthPlugin(array(
+                        'consumer_key'    => $app['config']['avr/f1::config.key'],
+                        'consumer_secret' => $app['config']['avr/f1::config.secret'],
+                        'token'           => $authenticate->accessToken['oauth_token'],
+                        'token_secret'    => $authenticate->accessToken['oauth_token_secret'],
+                    ));
+
+                    // Return authenticated HTTP client
+                    return $client->addSubscriber($oauth);
+                break;
+            }
         });
 
         // Create the F1 alias

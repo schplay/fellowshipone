@@ -12,6 +12,22 @@ return array(
 
     /*
     |--------------------------------------------------------------------------
+    | Authorization Protocol
+    |--------------------------------------------------------------------------
+    |
+    | Use this variable to select the type of authorization your application
+    | will be utilizing.
+    |
+    | Possible values include:
+    | '1', '2', '3', and 'v2v'
+    | Representing 1st party, 2nd party, 3rd party, and vendor to vendor, respectively.
+    |
+    */
+
+    'authType' => 'v2v',
+
+    /*
+    |--------------------------------------------------------------------------
     | Consumer Key and Secret
     |--------------------------------------------------------------------------
     |
