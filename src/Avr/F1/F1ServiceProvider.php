@@ -35,16 +35,14 @@ class F1ServiceProvider extends ServiceProvider {
             // Get access tokens from F1
             $authenticate = new Authenticate($settings);
 
+            // Create the HTTP Client
+            $client = new \Guzzle\Http\Client($app['config']['avr/f1::config.baseUrl']);
+
             switch($authType) {
                 case 'v2v':
-
+                    return $client;
                 break;
                 default:
-                    
-
-                    // Create the HTTP Client
-                    $client = new \Guzzle\Http\Client($app['config']['avr/f1::config.baseUrl']);
-
                     // Authenticate with F1
                     $oauth  = new \Guzzle\Plugin\Oauth\OauthPlugin(array(
                         'consumer_key'    => $app['config']['avr/f1::config.key'],

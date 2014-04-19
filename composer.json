@@ -5,6 +5,10 @@
         {
             "name": "Aaron Van Ruler",
             "email": "aaron@avr.io"
+        },
+        {
+            "name": "David Myers",
+            "email": "david.d.myers@gmail.com"
         }
     ],
     "require": {

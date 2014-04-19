@@ -3,7 +3,7 @@
  * Part of the F1 package.
  *
  * @package    F1
- * @version    1.0.0
+ * @version    1.5.0
  * @author     Aaron Van Ruler
  * @link       http://avr.io
  */

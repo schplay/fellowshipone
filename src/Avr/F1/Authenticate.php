@@ -22,7 +22,22 @@ class Authenticate {
     public function __construct($settings)
     {
         $this->settings = (object) $settings;
-        return $this->login($settings['username'], $settings['password']);
+        
+        switch ($this->settings['authType']) {
+            case '3':
+                $token = $this->getAccessToken();
+
+                if (!$token) {
+                    $token = $this->obtainAccessToken(null, null);
+                    return true;
+                }
+                $this->accessToken = $token;
+                break;
+            
+            default:
+                return $this->login($settings['username'], $settings['password']);
+                break;
+        }
     }
 
     /**
@@ -56,24 +71,34 @@ class Authenticate {
         try {
             $client = new Client($this->settings->baseUrl);
 
-            $oauth  = new OauthPlugin(array(
-                'consumer_key'  => $this->settings->key,
-                'consumer_secret' => $this->settings->secret,
-            ));
+            switch ($this->settings['authType']) {
+                case '3':
+                    
+                    break;
+                
+                default:
+                    
 
-            $client->addSubscriber($oauth);
+                    $oauth  = new OauthPlugin(array(
+                        'consumer_key'  => $this->settings->key,
+                        'consumer_secret' => $this->settings->secret,
+                    ));
 
-            // Create the URL
-            $credentials = urlencode(base64_encode("{$username} {$password}"));
-            $url = $this->settings->accessTokenUrl .'?ec='.$credentials;
+                    $client->addSubscriber($oauth);
 
-            // Request the tokens
-            $response = $client->post($url)->send();
+                    // Create the URL
+                    $credentials = urlencode(base64_encode("{$username} {$password}"));
+                    $url = $this->settings->accessTokenUrl .'?ec='.$credentials;
 
-            $tokens = [
-                'oauth_token' => $response->getHeader('oauth_token')->raw()[0],
-                'oauth_token_secret' => $response->getHeader('oauth_token_secret')->raw()[0],
-            ];
+                    // Request the tokens
+                    $response = $client->post($url)->send();
+
+                    $tokens = [
+                        'oauth_token' => $response->getHeader('oauth_token')->raw()[0],
+                        'oauth_token_secret' => $response->getHeader('oauth_token_secret')->raw()[0],
+                    ];
+                    break;
+            }
 
             return $tokens;
 
