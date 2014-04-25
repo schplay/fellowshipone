@@ -1,4 +1,4 @@
-<?php namespace Avr\F1;
+<?php namespace Schplay\F1;
 
 use Cache;
 use Guzzle\Http\Client;

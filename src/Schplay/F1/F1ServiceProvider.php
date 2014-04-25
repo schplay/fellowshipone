@@ -1,4 +1,4 @@
-<?php namespace Avr\F1;
+<?php namespace Schplay\F1;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -18,7 +18,7 @@ class F1ServiceProvider extends ServiceProvider {
      */
 	public function boot()
 	{
-        $this->package('avr/f1', 'avr/f1');
+        $this->package('schplay/f1', 'schplay/f1');
 	}
 
 	/**
@@ -30,13 +30,13 @@ class F1ServiceProvider extends ServiceProvider {
 	{
         $this->app['f1'] = $this->app->share(function($app)
         {
-            $settings = $app['config']['avr/f1::config'];
+            $settings = $app['config']['schplay/f1::config'];
 
             // Get access tokens from F1
             $authenticate = new Authenticate($settings);
 
             // Create the HTTP Client
-            $client = new \Guzzle\Http\Client($app['config']['avr/f1::config.baseUrl']);
+            $client = new \Guzzle\Http\Client($app['config']['schplay/f1::config.baseUrl']);
 
             switch($authType) {
                 case 'v2v':
@@ -45,8 +45,8 @@ class F1ServiceProvider extends ServiceProvider {
                 default:
                     // Authenticate with F1
                     $oauth  = new \Guzzle\Plugin\Oauth\OauthPlugin(array(
-                        'consumer_key'    => $app['config']['avr/f1::config.key'],
-                        'consumer_secret' => $app['config']['avr/f1::config.secret'],
+                        'consumer_key'    => $app['config']['schplay/f1::config.key'],
+                        'consumer_secret' => $app['config']['schplay/f1::config.secret'],
                         'token'           => $authenticate->accessToken['oauth_token'],
                         'token_secret'    => $authenticate->accessToken['oauth_token_secret'],
                     ));
@@ -61,7 +61,7 @@ class F1ServiceProvider extends ServiceProvider {
         $this->app->booting(function()
         {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-            $loader->alias('F1', 'Avr\F1\Facades\F1');
+            $loader->alias('F1', 'Schplay\F1\Facades\F1');
         });
 	}
 
