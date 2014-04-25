@@ -18,12 +18,12 @@
     },
     "autoload": {
         "psr-0": {
-            "Avr\\F1": "src/"
+            "Schplay\\F1": "src/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.5-dev"
+            "dev-master": "1.5"
         }
     },
     "minimum-stability": "dev"
