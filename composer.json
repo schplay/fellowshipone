@@ -1,5 +1,5 @@
 {
-    "name": "avr/f1",
+    "name": "schplay/f1",
     "description": "Utilizes 2nd Party authentication to work with FellowshipOne's API",
     "authors": [
         {
@@ -23,7 +23,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.5-dev"
         }
     },
     "minimum-stability": "dev"
