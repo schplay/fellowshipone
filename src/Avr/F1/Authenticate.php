@@ -23,7 +23,7 @@ class Authenticate {
     {
         $this->settings = (object) $settings;
         
-        switch ($this->settings['authType']) {
+        switch ($this->settings->authType) {
             case '3':
                 $token = $this->getAccessToken();
 
@@ -71,7 +71,7 @@ class Authenticate {
         try {
             $client = new Client($this->settings->baseUrl);
 
-            switch ($this->settings['authType']) {
+            switch ($this->settings->authType) {
                 case '3':
                     
                     break;

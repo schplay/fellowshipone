@@ -61,7 +61,7 @@ class F1ServiceProvider extends ServiceProvider {
         $this->app->booting(function()
         {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-            $loader->alias('F1', 'Avr\F1\Facade\F1');
+            $loader->alias('F1', 'Avr\F1\Facades\F1');
         });
 	}
 

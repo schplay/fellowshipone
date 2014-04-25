@@ -1,4 +1,4 @@
-<?php namespace Avr\F1\Facade;
+<?php namespace Avr\F1\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
