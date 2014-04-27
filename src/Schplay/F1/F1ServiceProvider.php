@@ -38,7 +38,7 @@ class F1ServiceProvider extends ServiceProvider {
             // Create the HTTP Client
             $client = new \Guzzle\Http\Client($app['config']['schplay/f1::config.baseUrl']);
 
-            switch($authType) {
+            switch($app['config']['schplay/f1::config.authType']) {
                 case 'v2v':
                     return $client;
                 break;

@@ -22,9 +22,9 @@ class Authenticate {
     public function __construct($settings)
     {
         $this->settings = (object) $settings;
-        
+
         switch ($this->settings->authType) {
-            case '3':
+            case 'v2v':
                 $token = $this->getAccessToken();
 
                 if (!$token) {
@@ -70,9 +70,9 @@ class Authenticate {
     {
         try {
             $client = new Client($this->settings->baseUrl);
-
+            $tokens = null;
             switch ($this->settings->authType) {
-                case '3':
+                case 'v2v':
                     
                     break;
                 
