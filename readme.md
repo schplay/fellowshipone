@@ -18,7 +18,7 @@ Add the following to your service provider array
 
 Copy the configuration file
 
-    php artisan config:publish avr/f1
+    php artisan config:publish schplay/f1
 
 Set the appropriate credentials and base URLs.
 
